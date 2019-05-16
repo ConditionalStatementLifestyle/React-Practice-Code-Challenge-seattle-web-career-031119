@@ -3,25 +3,30 @@ import React, { Fragment } from 'react'
 const Table = (props) => {
 
   const renderPlates = (array) => {
+    console.log(array.length)
     return array.map((x, index) => {
-      return <div className="empty-plate" style={{ top: -7 * index }}/>
+      console.log('we in map ', x)
+      return <div key={index} className="empty-plate" style={{ top: -7 * index }}/>
     })
+  }
+
+  const plates = (x) => {
+    let eaten = []
+    for (let i=0; i<x; i++) {
+      eaten.push(i)
+    }
+    return eaten
   }
 
   return (
     <Fragment>
       <h1 className="remaining">
-        You have: ${ /* Give me how much money I have left */ } remaining!
+        You have: ${ props.cash } remaining!
       </h1>
       <div className="table">
         <div className="stack">
           {
-            /* 
-               renderPlates takes an array 
-               and renders an empty plate
-               for every element in the array
-            */
-            renderPlates([])
+            renderPlates(plates(props.eaten))
           }
         </div>
       </div>
